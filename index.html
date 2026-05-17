@@ -256,6 +256,34 @@
   .pct-track{width:100%;height:4px;border-radius:2px;background:#E3F2FD;overflow:hidden}
   .pct-fill{height:100%;background:#1565C0;width:0%;transition:width .4s ease;border-radius:2px}
 
+  /* STEP 7 & 9 STYLES */
+  .filter-pills { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+  .filter-pill {
+    height: 34px; border-radius: 20px; font-size: 13px; font-weight: 600;
+    border: 1.5px solid #C8E6C9; background: #fff; color: #4A6741; cursor: pointer;
+    display: inline-flex; align-items: center; justify-content: center; padding: 0 12px;
+    font-family: inherit; transition: all 0.15s;
+  }
+  .filter-pill:hover { background: #F1F8F1; }
+  .filter-pill.active-all { background: #2E7D32; border-color: #2E7D32; color: #fff; }
+  .filter-pill.active-paid { background: #1B5E20; border-color: #1B5E20; color: #fff; }
+  .filter-pill.active-owing { background: #C62828; border-color: #C62828; color: #fff; }
+  .filter-pill.active-partial { background: #F57F17; border-color: #F57F17; color: #fff; }
+
+  .toolbar-right { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+  .btn-csv {
+    height: 40px; background: #2E7D32; color: #fff; border-radius: 8px;
+    font-size: 13px; font-weight: 600; border: none; padding: 0 12px;
+    cursor: pointer; display: flex; align-items: center; gap: 6px; font-family: inherit; transition: background 0.15s;
+  }
+  .btn-csv:hover { background: #1B5E20; }
+  .btn-pdf {
+    height: 40px; background: #fff; color: #C62828; border: 1.5px solid #FFCDD2;
+    border-radius: 8px; font-size: 13px; font-weight: 600; padding: 0 12px;
+    cursor: pointer; display: flex; align-items: center; gap: 6px; font-family: inherit; transition: background 0.15s;
+  }
+  .btn-pdf:hover { background: #FFF5F5; }
+
   @media (max-width:1023px){
     .fin-grid{grid-template-columns:repeat(3,1fr)}
     .ana-grid{grid-template-columns:repeat(2,1fr)}
@@ -275,6 +303,190 @@
     .fin-grid{grid-template-columns:repeat(2,1fr)}
     .ana-grid{grid-template-columns:repeat(2,1fr)}
     .financial-row{padding:16px}
+    .toolbar-right { flex-direction: row; flex-wrap: wrap; width: 100%; justify-content: flex-start; }
+    .filter-pills { width: 100%; }
+  }
+  @media (max-width:480px){
+    .fin-grid{grid-template-columns:repeat(2,1fr)}
+    .ana-grid{grid-template-columns:repeat(2,1fr)}
+  }
+
+  /* TASK 2 DASHBOARD STYLES */
+  .dash-zone1 {
+    background: linear-gradient(90deg, #2E7D32, #43A047);
+    color: #FFFFFF;
+    border-radius: 16px;
+    padding: 32px;
+    margin-bottom: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .dash-greeting { font-size: 16px; font-weight: 400; opacity: 0.8; margin-bottom: 4px; }
+  .dash-school { font-size: 28px; font-weight: 700; margin-bottom: 8px; }
+  .dash-date { font-size: 14px; opacity: 0.75; }
+  .dash-welcome-illus { width: 80px; height: 80px; opacity: 0.2; }
+  
+  .dash-zone2, .dash-zone3 {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  .dash-card {
+    flex: 1;
+    background: #FFFFFF;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    position: relative;
+  }
+  .dash-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+  }
+  .dash-border-green { border-left: 4px solid #2E7D32; }
+  .dash-border-blue { border-left: 4px solid #1565C0; }
+  .dash-border-red { border-left: 4px solid #C62828; }
+  .dash-border-amber { border-left: 4px solid #F57F17; }
+  
+  .dash-card-icon {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 24px;
+  }
+  .dash-card-title {
+    font-size: 14px;
+    color: #1B2A1B;
+    margin-bottom: 8px;
+    font-weight: 600;
+  }
+  .dash-card-value {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .dash-card-sub {
+    font-size: 12px;
+    color: #4A6741;
+  }
+
+  .dash-zone4 {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+  }
+  .dash-action-btn {
+    background: #FFFFFF;
+    border: 2px solid #C8E6C9;
+    border-radius: 12px;
+    padding: 16px 20px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #2E7D32;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.2s ease;
+    min-width: 160px;
+    font-family: inherit;
+  }
+  .dash-action-btn:hover {
+    background: #E8F5E9;
+    border-color: #2E7D32;
+    transform: translateY(-1px);
+  }
+  .dash-action-icon {
+    font-size: 18px;
+  }
+
+  .dash-zone5 {
+    margin-bottom: 24px;
+  }
+  .dash-activity-card {
+    background: #FFFFFF;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  }
+  .dash-activity-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+  }
+  .dash-activity-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #1B2A1B;
+  }
+  .dash-activity-subtitle {
+    font-size: 13px;
+    color: #4A6741;
+  }
+  .dash-activity-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid #F1F8F1;
+  }
+  .dash-activity-last {
+    border-bottom: none;
+  }
+  .dash-activity-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+  .dash-activity-body {
+    flex: 1;
+  }
+  .dash-activity-label {
+    font-size: 14px;
+    color: #1B2A1B;
+  }
+  .dash-activity-detail {
+    font-size: 14px;
+    color: #4A6741;
+    text-align: right;
+  }
+  .dash-empty-activity {
+    text-align: center;
+    color: #4A6741;
+    padding: 24px 0;
+  }
+  .dash-empty-activity p {
+    margin: 4px 0;
+  }
+
+  @media (max-width: 768px) {
+    .dash-zone1 {
+      padding: 20px;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .dash-welcome-illus {
+      display: none;
+    }
+    .dash-school {
+      font-size: 22px;
+    }
+    .dash-zone2, .dash-zone3 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+    .dash-action-btn {
+      width: 100%;
+    }
   }
 </style>
 </head>
@@ -285,18 +497,18 @@
     <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3 1 9l11 6 9-4.91V17h2V9M5 13.18v4L12 21l7-3.82v-4L12 17z"/></svg>
     EduCore Lite
   </div>
-  <div class="page-label" id="pageLabel">Student Management</div>
+  <div class="page-label" id="pageLabel">Dashboard</div>
 </header>
 
 <nav class="tabs" role="tablist">
-  <button class="tab active" data-tab="students" role="tab">👥 Student Management</button>
-  <button class="tab" data-tab="fees" role="tab">💰 Fee Management</button>
-  <button class="tab" data-tab="expenses" role="tab">🧾 Expenses</button>
-  <button class="tab" data-tab="dashboard" role="tab">📊 Dashboard</button>
+  <button class="tab active" id="tab-dashboard" data-tab="dashboard" role="tab">📊 Dashboard</button>
+  <button class="tab" id="tab-students" data-tab="students" role="tab">👥 Student Management</button>
+  <button class="tab" id="tab-fees" data-tab="fees" role="tab">💰 Fee Management</button>
+  <button class="tab" id="tab-expenses" data-tab="expenses" role="tab">🧾 Expenses</button>
 </nav>
 
 <!-- =================== STUDENT MANAGEMENT =================== -->
-<main class="container page active" id="page-students">
+<main class="container page" id="page-students">
   <section class="stats">
     <div class="stat"><div><div class="stat-num" id="stat-total">0</div><div class="stat-label">Total Students</div></div></div>
     <div class="stat"><div><div class="stat-num" id="stat-paid">0</div><div class="stat-label">Paid</div></div></div>
@@ -422,7 +634,23 @@
         <input id="searchInput" type="text" placeholder="Search by name or class..." />
         <button type="button" class="search-clear" id="searchClear" aria-label="Clear search">×</button>
       </div>
-      <div class="count-label" id="countLabel">Showing 0 of 0 students</div>
+      <div class="filter-pills" id="studentFilterPills">
+        <button class="filter-pill active-all" data-filter="All">All</button>
+        <button class="filter-pill" data-filter="Paid">● Paid</button>
+        <button class="filter-pill" data-filter="Owing">● Owing</button>
+        <button class="filter-pill" data-filter="Partial">● Partial</button>
+      </div>
+      <div class="toolbar-right">
+        <div class="count-label" id="countLabel">Showing 0 of 0 students</div>
+        <button type="button" id="btn-csv" class="btn-csv">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+          Export CSV
+        </button>
+        <button type="button" id="btn-pdf" class="btn-pdf">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+          Export PDF
+        </button>
+      </div>
     </div>
     <div id="tableArea"></div>
   </section>
@@ -561,15 +789,100 @@
 </main>
 
 <!-- =================== DASHBOARD =================== -->
-<main class="container page" id="page-dashboard">
-  <section class="stats cards-3">
-    <div class="stat"><div><div class="stat-num" id="card-total-students">0</div><div class="stat-label">Total Students</div></div></div>
-    <div class="stat blue"><div><div class="stat-num" id="card-fees-expected">₦0</div><div class="stat-label">Total Fees Expected</div></div></div>
-    <div class="stat"><div><div class="stat-num" id="card-fees-collected">₦0</div><div class="stat-label">Total Fees Collected</div></div></div>
-    <div class="stat red"><div><div class="stat-num" id="card-fees-outstanding">₦0</div><div class="stat-label">Outstanding Fees</div></div></div>
-    <div class="stat red"><div><div class="stat-num" id="card-total-expenses">₦0</div><div class="stat-label">Total Expenses</div></div></div>
-    <div class="stat"><div><div class="stat-num" id="card-remaining-balance">₦0</div><div class="stat-label">Remaining Balance</div></div></div>
-    <div class="stat"><div><div class="stat-num" id="card-net-funds">₦0</div><div class="stat-label">Net Funds</div></div></div>
+<main class="container page active" id="section-dashboard">
+  <!-- Zone 1: Welcome Banner -->
+  <section class="dash-zone1">
+    <div class="dash-welcome-text">
+      <div class="dash-greeting" id="dash-greeting">Good Morning 🌅</div>
+      <div class="dash-school" id="dash-school">EduCore Lite</div>
+      <div class="dash-date" id="dash-date">Monday, 14 July 2025</div>
+    </div>
+    <div class="dash-welcome-illus">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3 1 9l11 6 9-4.91V17h2V9M5 13.18v4L12 21l7-3.82v-4L12 17z"/></svg>
+    </div>
+  </section>
+
+  <!-- Zone 2: Key Metrics Row -->
+  <section class="dash-zone2">
+    <div class="dash-card dash-border-green">
+      <div class="dash-card-icon">👨‍🎓</div>
+      <div class="dash-card-title">Total Students</div>
+      <div class="dash-card-value" id="dash-total-students">0</div>
+      <div class="dash-card-sub">Registered this session</div>
+    </div>
+    <div class="dash-card dash-border-blue">
+      <div class="dash-card-icon">📋</div>
+      <div class="dash-card-title">Fee Records</div>
+      <div class="dash-card-value" id="dash-fee-records">0</div>
+      <div class="dash-card-sub">Students with fees assigned</div>
+    </div>
+    <div class="dash-card dash-border-green">
+      <div class="dash-card-icon">✅</div>
+      <div class="dash-card-title">Fully Paid</div>
+      <div class="dash-card-value" id="dash-fully-paid">0</div>
+      <div class="dash-card-sub">Students with zero balance</div>
+    </div>
+    <div class="dash-card dash-border-red">
+      <div class="dash-card-icon">⚠️</div>
+      <div class="dash-card-title">Outstanding</div>
+      <div class="dash-card-value" id="dash-outstanding-count">0</div>
+      <div class="dash-card-sub">Students with unpaid balances</div>
+    </div>
+  </section>
+
+  <!-- Zone 3: Financial Summary Row -->
+  <section class="dash-zone3">
+    <div class="dash-card dash-border-blue">
+      <div class="dash-card-icon">📊</div>
+      <div class="dash-card-title">Total Fees Expected</div>
+      <div class="dash-card-value" id="dash-total-expected">₦0</div>
+      <div class="dash-card-sub">Across all students</div>
+    </div>
+    <div class="dash-card dash-border-green">
+      <div class="dash-card-icon">💰</div>
+      <div class="dash-card-title">Total Collected</div>
+      <div class="dash-card-value" id="dash-total-collected">₦0</div>
+      <div class="dash-card-sub">Payments received</div>
+    </div>
+    <div class="dash-card dash-border-red">
+      <div class="dash-card-icon">🔴</div>
+      <div class="dash-card-title">Balance Outstanding</div>
+      <div class="dash-card-value" id="dash-balance-outstanding">₦0</div>
+      <div class="dash-card-sub">Remaining to collect</div>
+    </div>
+    <div class="dash-card dash-border-amber">
+      <div class="dash-card-icon">🧾</div>
+      <div class="dash-card-title">Total Expenses</div>
+      <div class="dash-card-value" id="dash-total-expenses">₦0</div>
+      <div class="dash-card-sub">Recorded expenditure</div>
+    </div>
+  </section>
+
+  <!-- Zone 4: Quick Actions Row -->
+  <section class="dash-zone4">
+    <button class="dash-action-btn" onclick="navigateToTab('tab-students', 'addForm', 'f-name')">
+      <span class="dash-action-icon">➕</span> Add Student
+    </button>
+    <button class="dash-action-btn" onclick="navigateToTab('tab-fees', 'feeForm', 'ff-student')">
+      <span class="dash-action-icon">💳</span> Assign Fee
+    </button>
+    <button class="dash-action-btn" onclick="navigateToTab('tab-expenses', 'add-expense-form', 'expense-title')">
+      <span class="dash-action-icon">🧾</span> Record Expense
+    </button>
+    <button class="dash-action-btn" onclick="navigateToTab('tab-fees', 'feeTableArea', null)">
+      <span class="dash-action-icon">📋</span> View Fee Records
+    </button>
+  </section>
+
+  <!-- Zone 5: Recent Activity Panel -->
+  <section class="dash-zone5">
+    <div class="dash-activity-card">
+      <div class="dash-activity-header">
+        <div class="dash-activity-title">Recent Activity</div>
+        <div class="dash-activity-subtitle">Last 5 actions</div>
+      </div>
+      <div id="dash-activity-list"></div>
+    </div>
   </section>
 </main>
 
@@ -684,30 +997,121 @@
 <div class="toast" id="toast"></div>
 
 <script>
+const STORAGE_KEYS = {
+  students:     'educore_students',
+  fees:         'educore_fees',
+  expenses:     'educore_expenses',
+  feePerStudent:'educore_fee_per_student',
+  totalExpenses:'educore_total_expenses',
+  schemaVersion:'educore_schema_version'
+};
+
+const SCHEMA_VERSION = '1.0';
+
+
+
+let students = [];
+let feeRecords = [];
+let expenses = [];
+
+function clearStorage() {
+  try {
+    Object.values(STORAGE_KEYS).forEach(key => localStorage.removeItem(key));
+  } catch (err) {
+    console.warn('[EduCore] Could not clear localStorage:', err.message);
+  }
+}
+
+function safeParse(jsonString, fallback) {
+  if (jsonString === null || jsonString === undefined) return fallback;
+  try {
+    return JSON.parse(jsonString);
+  } catch (err) {
+    console.warn('[EduCore] Could not parse stored value:', err.message);
+    return fallback;
+  }
+}
+
+function seedDefaultData() {
+  students = [
+    { id:1, name:'Amara Okafor',     className:'Primary 4', parentPhone:'08012345678', feeStatus:'Paid',    amountPaid:30000 },
+    { id:2, name:'Emeka Nwosu',      className:'Primary 2', parentPhone:'08098765432', feeStatus:'Owing',   amountPaid:0     },
+    { id:3, name:'Fatima Aliyu',     className:'Primary 5', parentPhone:'08055544433', feeStatus:'Partial', amountPaid:15000 },
+    { id:4, name:'Chidi Eze',        className:'Primary 1', parentPhone:'08077788899', feeStatus:'Paid',    amountPaid:30000 },
+    { id:5, name:'Blessing Adeyemi', className:'Primary 6', parentPhone:'08033322211', feeStatus:'Owing',   amountPaid:0     },
+  ];
+  feeRecords = [
+    {id:1, studentId:1, studentName:"Amara Okafor",     className:"Primary 4", totalFee:50000, amountPaid:50000, balance:0,     status:"Paid"},
+    {id:2, studentId:2, studentName:"Emeka Nwosu",      className:"Primary 2", totalFee:45000, amountPaid:0,     balance:45000, status:"Owing"},
+    {id:3, studentId:3, studentName:"Fatima Aliyu",     className:"Primary 5", totalFee:60000, amountPaid:30000, balance:30000, status:"Partial"},
+    {id:4, studentId:4, studentName:"Chidi Eze",        className:"Primary 1", totalFee:40000, amountPaid:40000, balance:0,     status:"Paid"},
+    {id:5, studentId:5, studentName:"Blessing Adeyemi", className:"Primary 6", totalFee:55000, amountPaid:20000, balance:35000, status:"Partial"},
+  ];
+  expenses = [
+    { id:1, title:"Chalk and Markers", category:"Supplies",   amount:5000,  date:"2025-01-10", dateDisplay:"10/01/2025" },
+    { id:2, title:"Generator Fuel",    category:"Utilities",  amount:15000, date:"2025-01-15", dateDisplay:"15/01/2025" },
+    { id:3, title:"Cleaning Materials",category:"Maintenance",amount:8000,  date:"2025-01-20", dateDisplay:"20/01/2025" }
+  ];
+  window.feePerStudent = 30000;
+  window.totalExpenses = 0;
+  saveToStorage();
+}
+
+function restoreFromStorage() {
+  try {
+    const savedStudents      = localStorage.getItem(STORAGE_KEYS.students);
+    const savedFees          = localStorage.getItem(STORAGE_KEYS.fees);
+    const savedExpenses      = localStorage.getItem(STORAGE_KEYS.expenses);
+    const savedFeePerStudent = localStorage.getItem(STORAGE_KEYS.feePerStudent);
+    const savedTotalExpenses = localStorage.getItem(STORAGE_KEYS.totalExpenses);
+    const savedVersion       = localStorage.getItem(STORAGE_KEYS.schemaVersion);
+
+    if (savedVersion && savedVersion !== SCHEMA_VERSION) {
+      console.warn('[EduCore] Storage schema mismatch. Clearing old data.');
+      clearStorage();
+      seedDefaultData();
+      return;
+    }
+
+    students                  = safeParse(savedStudents,      null);
+    feeRecords                = safeParse(savedFees,          null);
+    expenses                  = safeParse(savedExpenses,      null);
+    window.feePerStudent      = safeParse(savedFeePerStudent, 30000);
+    window.totalExpenses      = safeParse(savedTotalExpenses, 0);
+
+    if (students === null)  { seedDefaultData(); return; }
+
+    if (feeRecords === null) feeRecords = [];
+    if (expenses === null)   expenses = [];
+
+  } catch (err) {
+    console.warn('[EduCore] Could not restore from localStorage:', err.message);
+    seedDefaultData();
+  }
+}
+
+function saveToStorage() {
+  try {
+    localStorage.setItem(STORAGE_KEYS.students,      JSON.stringify(students));
+    localStorage.setItem(STORAGE_KEYS.fees,          JSON.stringify(feeRecords));
+    localStorage.setItem(STORAGE_KEYS.expenses,      JSON.stringify(expenses));
+    localStorage.setItem(STORAGE_KEYS.feePerStudent, JSON.stringify(window.feePerStudent));
+    localStorage.setItem(STORAGE_KEYS.totalExpenses, JSON.stringify(window.totalExpenses));
+    localStorage.setItem(STORAGE_KEYS.schemaVersion, SCHEMA_VERSION);
+  } catch (err) {
+    console.warn('[EduCore] Could not save to localStorage:', err.message);
+  }
+}
+</script>
+
+<script>
 (function(){
   // ---------- Data ----------
   let nextId = 1;
-  const students = [
-    {id:nextId++, name:"Amara Okafor",     className:"Primary 4", parentPhone:"08012345678", feeStatus:"Paid",    amountPaid:30000},
-    {id:nextId++, name:"Emeka Nwosu",      className:"Primary 2", parentPhone:"08098765432", feeStatus:"Owing",   amountPaid:0},
-    {id:nextId++, name:"Fatima Aliyu",     className:"Primary 5", parentPhone:"08055544433", feeStatus:"Partial", amountPaid:15000},
-    {id:nextId++, name:"Chidi Eze",        className:"Primary 1", parentPhone:"08077788899", feeStatus:"Paid",    amountPaid:30000},
-    {id:nextId++, name:"Blessing Adeyemi", className:"Primary 6", parentPhone:"08033322211", feeStatus:"Owing",   amountPaid:0},
-  ];
-  // App-level financial settings (Step 1)
-  window.feePerStudent = 30000;
-  window.totalExpenses = 0;
-
   let nextFeeId = 1;
-  const feeRecords = [
-    {id:nextFeeId++, studentId:1, studentName:"Amara Okafor",     className:"Primary 4", totalFee:50000, amountPaid:50000, balance:0,     status:"Paid"},
-    {id:nextFeeId++, studentId:2, studentName:"Emeka Nwosu",      className:"Primary 2", totalFee:45000, amountPaid:0,     balance:45000, status:"Owing"},
-    {id:nextFeeId++, studentId:3, studentName:"Fatima Aliyu",     className:"Primary 5", totalFee:60000, amountPaid:30000, balance:30000, status:"Partial"},
-    {id:nextFeeId++, studentId:4, studentName:"Chidi Eze",        className:"Primary 1", totalFee:40000, amountPaid:40000, balance:0,     status:"Paid"},
-    {id:nextFeeId++, studentId:5, studentName:"Blessing Adeyemi", className:"Primary 6", totalFee:55000, amountPaid:20000, balance:35000, status:"Partial"},
-  ];
 
   let currentSearch = "", currentFeeSearch = "";
+  let currentFilter = "All";
   let editingId = null, editingFeeId = null;
   let pendingDelete = null;
 
@@ -746,8 +1150,13 @@
       const name = t.dataset.tab;
       document.querySelectorAll(".tab").forEach(x=>x.classList.toggle("active", x===t));
       document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
-      $("#page-"+name).classList.add("active");
-      $("#pageLabel").textContent = name==="fees" ? "Fee Management" : "Student Management";
+      const target = document.getElementById("page-"+name) || document.getElementById("section-"+name);
+      if(target) target.classList.add("active");
+      let label = "Student Management";
+      if(name==="fees") label = "Fee Management";
+      else if(name==="expenses") label = "Expenses";
+      else if(name==="dashboard") label = "Dashboard";
+      $("#pageLabel").textContent = label;
     });
   });
 
@@ -847,9 +1256,56 @@
     $("#stat-owing").textContent = o;
     $("#stat-partial").textContent = pa;
   }
+  function getFilteredData() {
+    return students.filter(s => {
+      const q = currentSearch.trim().toLowerCase();
+      const matchesSearch = !q ||
+        s.name.toLowerCase().includes(q) ||
+        s.className.toLowerCase().includes(q);
+      const matchesFilter = currentFilter === 'All' || s.feeStatus === currentFilter;
+      return matchesSearch && matchesFilter;
+    });
+  }
+
+  function setFilter(value) {
+    currentFilter = value;
+    document.querySelectorAll('.filter-pill').forEach(pill => {
+      pill.className = 'filter-pill';
+      if (pill.dataset.filter === value) {
+        const activeClass = {
+          All: 'active-all',
+          Paid: 'active-paid',
+          Owing: 'active-owing',
+          Partial: 'active-partial'
+        }[value];
+        if (activeClass) pill.classList.add(activeClass);
+      }
+    });
+    renderStudentTable();
+  }
+
+  function exportCSV() {
+    const rows = [['#','Name','Class','Parent Phone','Amount Paid (N)','Fee Status']];
+    students.forEach((s, i) => {
+      rows.push([i+1, s.name, s.className, s.parentPhone, s.amountPaid, s.feeStatus]);
+    });
+    const csv = rows.map(r =>
+      r.map(cell => '"' + String(cell).replace(/"/g, '""') + '"').join(',')
+    ).join('\n');
+    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'educore-students.csv';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    showToast('CSV exported successfully');
+  }
+
   function renderStudentTable(){
-    const q = currentSearch.trim().toLowerCase();
-    const list = q ? students.filter(s=>s.name.toLowerCase().includes(q)||s.className.toLowerCase().includes(q)) : students;
+    const list = getFilteredData();
     $("#countLabel").textContent = `Showing ${list.length} of ${students.length} students`;
     const area = $("#tableArea");
     if(students.length===0){
@@ -857,11 +1313,11 @@
       return;
     }
     if(list.length===0){
-      area.innerHTML = `<div class="empty"><h3>No students match your search</h3><p>Try a different name or class</p></div>`;
+      area.innerHTML = `<div class="empty"><h3>No students match your search</h3><p>Try a different name, class, or remove the active filter</p></div>`;
       return;
     }
     const rows = list.map((s,i)=>{
-      const st = getStudentFeeStatus(s.id);
+      const st = s.feeStatus;
       const canRemind = st==="Owing" || st==="Partial";
       return `
       <tr data-id="${s.id}">
@@ -869,6 +1325,7 @@
         <td>${esc(s.name)}</td>
         <td class="center">${esc(s.className)}</td>
         <td class="center">${esc(s.parentPhone)}</td>
+        <td class="right" style="font-weight:600; color:#1B2A1B">${formatCurrency(s.amountPaid)}</td>
         <td class="center">${pillFor(st)}</td>
         <td class="center"><div class="actions">
           ${canRemind?`<button class="icon-btn" title="Send fee reminder" data-action="remind" data-id="${s.id}">📲</button>`:""}
@@ -881,6 +1338,7 @@
       <thead><tr>
         <th class="center" style="width:48px">#</th><th>Student Name</th>
         <th class="center" style="width:120px">Class</th><th class="center" style="width:160px">Parent Contact</th>
+        <th class="right" style="width:130px">Amount Paid (₦)</th>
         <th class="center" style="width:130px">Fee Status</th><th class="center" style="width:110px">Actions</th>
       </tr></thead><tbody>${rows}</tbody></table></div>`;
   }
@@ -975,6 +1433,7 @@
   function syncFeeStatusToStudent(studentId, status){
     const s = students.find(x=>x.id===studentId);
     if(s){ s.feeStatus = status; }
+    saveToStorage();
     renderStudentTable();
     updateStudentStats();
   }
@@ -996,9 +1455,11 @@
       parentPhone:data.parentPhone.trim(), feeStatus:data.feeStatus,
       amountPaid:Number(data.amountPaid)
     });
+    saveToStorage();
     addForm.reset();
     renderStudentTable(); updateStudentStats(); refreshStudentDropdown();
     if(typeof updateStats === "function") try { updateStats(); } catch(_){}
+    if(typeof window.updateDashboard === "function") window.updateDashboard();
     const banner = $("#addBanner"); banner.classList.add("show");
     clearTimeout(banner._h); banner._h = setTimeout(()=>banner.classList.remove("show"), 3000);
   });
@@ -1015,6 +1476,13 @@
     $("#searchInput").value=""; currentSearch=""; $("#searchClear").classList.remove("show");
     renderStudentTable(); $("#searchInput").focus();
   });
+
+  document.querySelectorAll(".filter-pill").forEach(pill => {
+    pill.addEventListener("click", () => setFilter(pill.dataset.filter));
+  });
+
+  $("#btn-csv") && $("#btn-csv").addEventListener("click", exportCSV);
+  $("#btn-pdf") && $("#btn-pdf").addEventListener("click", () => showToast('PDF export coming soon'));
 
   // Student table actions
   $("#tableArea").addEventListener("click", e=>{
@@ -1051,6 +1519,7 @@
       parentPhone:data.parentPhone.trim(), feeStatus:data.feeStatus,
       amountPaid:Number(data.amountPaid)
     });
+    saveToStorage();
     closeEdit();
     renderStudentTable(); updateStudentStats(); refreshStudentDropdown(); renderFeeTable();
     if(typeof updateStats === "function") try { updateStats(); } catch(_){}
@@ -1096,8 +1565,10 @@
       studentName:s.name, className:s.className,
       totalFee:total, amountPaid:paid, balance:total-paid, status
     });
+    saveToStorage();
     feeForm.reset(); updateFeeFormPreview();
     renderFeeTable(); updateFeeCards(); syncFeeStatusToStudent(Number(sid), status);
+    if(typeof window.updateDashboard === "function") window.updateDashboard();
     const banner = $("#feeBanner");
     banner.textContent = `✓ Fee record assigned successfully for ${s.name}`;
     banner.classList.add("show");
@@ -1159,8 +1630,10 @@
     clearErrors(editFeeForm);
     r.totalFee = v.total; r.amountPaid = v.paid;
     r.balance = v.total - v.paid; r.status = computeStatus(v.total, v.paid);
+    saveToStorage();
     closeEditFee();
     renderFeeTable(); updateFeeCards(); syncFeeStatusToStudent(r.studentId, r.status);
+    if(typeof window.updateDashboard === "function") window.updateDashboard();
     showToolbarMsg("✓ Fee record updated");
     showToast("Fee record updated");
   });
@@ -1189,16 +1662,20 @@
       const idx = students.findIndex(x=>x.id===id);
       if(idx>-1) students.splice(idx,1);
       for(let i=feeRecords.length-1;i>=0;i--) if(feeRecords[i].studentId===id) feeRecords.splice(i,1);
+      saveToStorage();
       renderStudentTable(); updateStudentStats(); refreshStudentDropdown(); renderFeeTable(); updateFeeCards();
       updateStats();
+      if(typeof window.updateDashboard === "function") window.updateDashboard();
       showToast("Student removed");
     } else {
       const r = feeRecords.find(x=>x.id===pendingDelete.id);
       const studentId = r ? r.studentId : null;
       const idx = feeRecords.findIndex(x=>x.id===pendingDelete.id);
       if(idx>-1) feeRecords.splice(idx,1);
+      saveToStorage();
       renderFeeTable(); updateFeeCards();
       if(studentId!=null) syncFeeStatusToStudent(studentId, "Owing");
+      if(typeof window.updateDashboard === "function") window.updateDashboard();
       showToolbarMsg("Fee record deleted");
       showToast("Fee record deleted");
     }
@@ -1318,6 +1795,7 @@ Kindly arrange payment at your earliest convenience. Thank you for your continue
     }
     window.feePerStudent = fee;
     window.totalExpenses = exp;
+    saveToStorage();
     // updateStats() will be added in Step 10. Call defensively.
     if(typeof updateStats === "function") {
       try { updateStats(); } catch(_){}
@@ -1326,40 +1804,10 @@ Kindly arrange payment at your earliest convenience. Thank you for your continue
     closeSettings();
   });
 
-  // ---------- Init ----------
-  // Note: student.feeStatus values come from the seeded student data (Step 1)
-  // and are NOT overwritten from feeRecords here, so analytics counts and the
-  // financial summary stay consistent with the new fee-tracking model.
-  renderStudentTable(); updateStudentStats();
-  refreshStudentDropdown();
-  renderFeeTable(); updateFeeCards();
-  updateFeeFormPreview();
-  updateStats();
-
-  // Expose live store for the dashboard/expenses script
-  window.__store = { students, feeRecords };
-})();
-</script>
-
-<script>
-(function(){
-  // ===== EXPENSES + DASHBOARD =====
-  let expenses = [
-    { id:1, title:"Chalk and Markers", category:"Supplies",   amount:5000,  date:"2025-01-10", dateDisplay:"10/01/2025" },
-    { id:2, title:"Generator Fuel",    category:"Utilities",  amount:15000, date:"2025-01-15", dateDisplay:"15/01/2025" },
-    { id:3, title:"Cleaning Materials",category:"Maintenance",amount:8000,  date:"2025-01-20", dateDisplay:"20/01/2025" }
-  ];
-  let nextExpenseId = 4;
+  let nextExpenseId = 1;
 
   // ----- Utilities -----
-  function formatCurrency(amount){
-    if(amount===null||amount===undefined||isNaN(amount)) return "₦0";
-    return "₦" + Number(amount).toLocaleString("en-NG",{minimumFractionDigits:0,maximumFractionDigits:0});
-  }
-  function escapeHtml(str){
-    if(str===null||str===undefined) return "";
-    return String(str).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#39;");
-  }
+  function escapeHtml(str){ return esc(str); }
   function formatDateForDisplay(d){
     if(!d) return ""; const p=d.split("-"); if(p.length!==3) return d;
     return p[2]+"/"+p[1]+"/"+p[0];
@@ -1425,8 +1873,10 @@ Kindly arrange payment at your earliest convenience. Thank you for your continue
     if(!isValid) return;
 
     expenses.push({ id:nextExpenseId++, title, category, amount, date, dateDisplay:formatDateForDisplay(date) });
+    saveToStorage();
     renderExpenseTable();
     updateAllDashboardCards();
+    if(typeof window.updateDashboard === "function") window.updateDashboard();
     document.getElementById("add-expense-form").reset();
     const di = document.getElementById("expense-date");
     if(di) di.value = new Date().toISOString().split("T")[0];
@@ -1438,8 +1888,10 @@ Kindly arrange payment at your earliest convenience. Thank you for your continue
     if(!exp) return;
     if(!confirm("Delete expense: "+exp.title+"?\n\nThis cannot be undone.")) return;
     expenses.splice(expenses.findIndex(e=>e.id===id),1);
+    saveToStorage();
     renderExpenseTable();
     updateAllDashboardCards();
+    if(typeof window.updateDashboard === "function") window.updateDashboard();
   }
 
   // ----- Dashboard cards -----
@@ -1504,7 +1956,208 @@ Kindly arrange payment at your earliest convenience. Thank you for your continue
 
     renderExpenseTable();
     updateAllDashboardCards();
+    if(typeof window.updateDashboard === "function") window.updateDashboard();
   });
+
+  // ===== TASK 2 DASHBOARD LOGIC =====
+  function navigateToTab(tabId, scrollTargetId, focusTargetId) {
+    document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
+    document.querySelectorAll(".page").forEach(s => s.classList.remove("active"));
+
+    const tabBtn = document.getElementById(tabId);
+    let sectionId = tabId.replace("tab-", "page-");
+    if(tabId === "tab-dashboard") sectionId = "section-dashboard";
+    const section = document.getElementById(sectionId);
+    
+    if (tabBtn)  tabBtn.classList.add("active");
+    if (section) section.classList.add("active");
+
+    let label = "Student Management";
+    if(tabId==="tab-fees") label = "Fee Management";
+    else if(tabId==="tab-expenses") label = "Expenses";
+    else if(tabId==="tab-dashboard") label = "Dashboard";
+    const pageLabel = document.getElementById("pageLabel");
+    if(pageLabel) pageLabel.textContent = label;
+
+    if (scrollTargetId) {
+      const el = document.getElementById(scrollTargetId);
+      if (el) {
+        setTimeout(() => {
+          el.scrollIntoView({ behavior: "smooth", block: "start" });
+        }, 100);
+      }
+    }
+
+    if (focusTargetId) {
+      const focusEl = document.getElementById(focusTargetId);
+      if (focusEl) {
+        setTimeout(() => focusEl.focus(), 300);
+      }
+    }
+  }
+
+  function getRecentActivity() {
+    const activities = [];
+    const store = window.__store || {students:[], feeRecords:[]};
+    
+    const recentStudents = store.students.slice(-5);
+    recentStudents.forEach(s => {
+      activities.push({
+        type:   "student",
+        id:     s.id,
+        label:  s.name + " added to " + s.className,
+        detail: s.className
+      });
+    });
+
+    const recentFees = store.feeRecords.slice(-5);
+    recentFees.forEach(f => {
+      activities.push({
+        type:   "fee",
+        id:     f.id,
+        label:  "Fee assigned to " + f.studentName,
+        detail: formatCurrency(f.totalFee) + " | " + f.status
+      });
+    });
+
+    const recentExpenses = typeof expenses !== 'undefined' ? expenses.slice(-5) : [];
+    recentExpenses.forEach(e => {
+      activities.push({
+        type:   "expense",
+        id:     e.id,
+        label:  e.title + " — " + e.category,
+        detail: formatCurrency(e.amount)
+      });
+    });
+
+    activities.sort((a, b) => b.id - a.id);
+    return activities.slice(0, 5);
+  }
+
+  function renderRecentActivity() {
+    const container = document.getElementById("dash-activity-list");
+    if (!container) return;
+
+    const activities = getRecentActivity();
+
+    if (activities.length === 0) {
+      container.innerHTML = `
+        <div class="dash-empty-activity">
+          <p>No activity recorded yet.</p>
+          <p>Add students, assign fees, or record expenses to see activity here.</p>
+        </div>`;
+      return;
+    }
+
+    const icons = {
+      student: { bg: "#E8F5E9", emoji: "👨‍🎓" },
+      fee:     { bg: "#E3F2FD", emoji: "💳" },
+      expense: { bg: "#FFF8E1", emoji: "🧾" }
+    };
+
+    container.innerHTML = activities.map((act, index) => {
+      const icon = icons[act.type] || { bg: "#F5F5F5", emoji: "•" };
+      const isLast = index === activities.length - 1;
+      return `
+        <div class="dash-activity-item ${isLast ? "dash-activity-last" : ""}">
+          <div class="dash-activity-icon" style="background:${icon.bg}">
+            ${icon.emoji}
+          </div>
+          <div class="dash-activity-body">
+            <span class="dash-activity-label">${escapeHtml(act.label)}</span>
+          </div>
+          <div class="dash-activity-detail">${escapeHtml(act.detail)}</div>
+        </div>`;
+    }).join("");
+  }
+
+  function updateDashboard() {
+    const hour = new Date().getHours();
+    let greeting = "Good Morning 🌅";
+    if (hour >= 12 && hour < 17) greeting = "Good Afternoon ☀️";
+    else if (hour >= 17 && hour < 21) greeting = "Good Evening 🌆";
+    else if (hour >= 21 || hour < 5) greeting = "Good Night 🌙";
+    
+    const greetEl = document.getElementById("dash-greeting");
+    if(greetEl) greetEl.textContent = greeting;
+
+    const schoolEl = document.getElementById("school-name-display");
+    const schoolName = schoolEl?.textContent?.trim() || "EduCore Lite";
+    const dashSchoolEl = document.getElementById("dash-school");
+    if(dashSchoolEl) dashSchoolEl.textContent = schoolName;
+
+    const dateEl = document.getElementById("dash-date");
+    if(dateEl) {
+      dateEl.textContent = new Date().toLocaleDateString(undefined, {
+        weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
+      });
+    }
+
+    const store = window.__store || {students:[],feeRecords:[]};
+    const stList = store.students;
+    const feeList = store.feeRecords;
+    const expList = typeof expenses !== 'undefined' ? expenses : [];
+
+    const set = (id, val) => {
+      const el = document.getElementById(id);
+      if (el) el.textContent = val;
+    };
+
+    const paidCount = feeList.filter(f => f.status === "Paid").length;
+    const unpaidCount = feeList.filter(f => f.status === "Owing" || f.status === "Partial").length;
+
+    set("dash-total-students",    stList.length);
+    set("dash-fee-records",       feeList.length);
+    set("dash-fully-paid",        paidCount);
+    set("dash-outstanding-count", unpaidCount);
+
+    const outCountEl = document.getElementById("dash-outstanding-count");
+    if (outCountEl) {
+      outCountEl.style.color = unpaidCount > 0 ? "#C62828" : "#2E7D32";
+    }
+
+    const totalExpected  = feeList.reduce((s, f) => s + f.totalFee,   0);
+    const totalCollected = feeList.reduce((s, f) => s + f.amountPaid, 0);
+    const balanceOut     = feeList.reduce((s, f) => s + f.balance,    0);
+    const totalExpenses  = expList.reduce((s, e) => s + e.amount,     0);
+
+    set("dash-total-expected",    formatCurrency(totalExpected));
+    set("dash-total-collected",   formatCurrency(totalCollected));
+    set("dash-balance-outstanding", formatCurrency(balanceOut));
+    set("dash-total-expenses",    formatCurrency(totalExpenses));
+
+    const balEl = document.getElementById("dash-balance-outstanding");
+    if (balEl) {
+      balEl.style.color = balanceOut > 0 ? "#C62828" : "#2E7D32";
+    }
+
+    renderRecentActivity();
+  }
+  
+  window.updateDashboard = updateDashboard;
+  window.navigateToTab = navigateToTab;
+
+  // INITIALISATION — runs once when the page loads
+  restoreFromStorage();   // 1. Restore all data from localStorage (or seed defaults)
+
+  // Reset counters to avoid duplicate IDs after restore
+  if (students.length > 0) nextId = Math.max(...students.map(s => s.id)) + 1;
+  if (feeRecords.length > 0) nextFeeId = Math.max(...feeRecords.map(f => f.id)) + 1;
+  if (expenses.length > 0) nextExpenseId = Math.max(...expenses.map(e => e.id)) + 1;
+
+  renderStudentTable();   // 2. Render student table with restored data
+  renderFeeTable();       // 3. Render fee table 
+  renderExpenseTable();   // 4. Render expense table 
+  
+  // Recalculate all dashboard cards and financial figures
+  updateStats();
+  updateStudentStats();
+  refreshStudentDropdown();
+  updateFeeCards();
+  updateFeeFormPreview();
+  updateAllDashboardCards();
+  updateDashboard();
+
 })();
 </script>
 </body>
