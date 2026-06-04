@@ -997,111 +997,76 @@
 <div class="toast" id="toast"></div>
 
 <script>
-const STORAGE_KEYS = {
-  students:     'educore_students',
-  fees:         'educore_fees',
-  expenses:     'educore_expenses',
-  feePerStudent:'educore_fee_per_student',
-  totalExpenses:'educore_total_expenses',
-  schemaVersion:'educore_schema_version'
-};
-
-const SCHEMA_VERSION = '1.0';
-
-
-
-let students = [];
-let feeRecords = [];
-let expenses = [];
-
-function clearStorage() {
-  try {
-    Object.values(STORAGE_KEYS).forEach(key => localStorage.removeItem(key));
-  } catch (err) {
-    console.warn('[EduCore] Could not clear localStorage:', err.message);
-  }
-}
-
-function safeParse(jsonString, fallback) {
-  if (jsonString === null || jsonString === undefined) return fallback;
-  try {
-    return JSON.parse(jsonString);
-  } catch (err) {
-    console.warn('[EduCore] Could not parse stored value:', err.message);
-    return fallback;
-  }
-}
-
-function seedDefaultData() {
-  students = [
-    { id:1, name:'Amara Okafor',     className:'Primary 4', parentPhone:'08012345678', feeStatus:'Paid',    amountPaid:30000 },
-    { id:2, name:'Emeka Nwosu',      className:'Primary 2', parentPhone:'08098765432', feeStatus:'Owing',   amountPaid:0     },
-    { id:3, name:'Fatima Aliyu',     className:'Primary 5', parentPhone:'08055544433', feeStatus:'Partial', amountPaid:15000 },
-    { id:4, name:'Chidi Eze',        className:'Primary 1', parentPhone:'08077788899', feeStatus:'Paid',    amountPaid:30000 },
-    { id:5, name:'Blessing Adeyemi', className:'Primary 6', parentPhone:'08033322211', feeStatus:'Owing',   amountPaid:0     },
+  const STORAGE_KEY = 'educore_lite_data';
+  
+  const seedStudents = [
+    {id:1, name:'Amara Okafor', className:'Primary 4', parentPhone:'08012345678', feeStatus:'Paid', amountPaid:30000},
+    {id:2, name:'Emeka Nwosu', className:'Primary 2', parentPhone:'08098765432', feeStatus:'Owing', amountPaid:0},
+    {id:3, name:'Fatima Aliyu', className:'Primary 5', parentPhone:'08055544433', feeStatus:'Partial', amountPaid:15000},
+    {id:4, name:'Chidi Eze', className:'Primary 1', parentPhone:'08077788899', feeStatus:'Paid', amountPaid:30000},
+    {id:5, name:'Blessing Adeyemi', className:'Primary 6', parentPhone:'08033322211', feeStatus:'Owing', amountPaid:0}
   ];
-  feeRecords = [
-    {id:1, studentId:1, studentName:"Amara Okafor",     className:"Primary 4", totalFee:50000, amountPaid:50000, balance:0,     status:"Paid"},
-    {id:2, studentId:2, studentName:"Emeka Nwosu",      className:"Primary 2", totalFee:45000, amountPaid:0,     balance:45000, status:"Owing"},
-    {id:3, studentId:3, studentName:"Fatima Aliyu",     className:"Primary 5", totalFee:60000, amountPaid:30000, balance:30000, status:"Partial"},
-    {id:4, studentId:4, studentName:"Chidi Eze",        className:"Primary 1", totalFee:40000, amountPaid:40000, balance:0,     status:"Paid"},
-    {id:5, studentId:5, studentName:"Blessing Adeyemi", className:"Primary 6", totalFee:55000, amountPaid:20000, balance:35000, status:"Partial"},
+  
+  const seedFees = [
+    {id:1, studentId:1, studentName:"Amara Okafor", className:"Primary 4", totalFee:50000, amountPaid:50000, balance:0, status:"Paid"},
+    {id:2, studentId:2, studentName:"Emeka Nwosu", className:"Primary 2", totalFee:45000, amountPaid:0, balance:45000, status:"Owing"},
+    {id:3, studentId:3, studentName:"Fatima Aliyu", className:"Primary 5", totalFee:60000, amountPaid:30000, balance:30000, status:"Partial"},
+    {id:4, studentId:4, studentName:"Chidi Eze", className:"Primary 1", totalFee:40000, amountPaid:40000, balance:0, status:"Paid"},
+    {id:5, studentId:5, studentName:"Blessing Adeyemi", className:"Primary 6", totalFee:55000, amountPaid:20000, balance:35000, status:"Partial"}
   ];
-  expenses = [
-    { id:1, title:"Chalk and Markers", category:"Supplies",   amount:5000,  date:"2025-01-10", dateDisplay:"10/01/2025" },
-    { id:2, title:"Generator Fuel",    category:"Utilities",  amount:15000, date:"2025-01-15", dateDisplay:"15/01/2025" },
-    { id:3, title:"Cleaning Materials",category:"Maintenance",amount:8000,  date:"2025-01-20", dateDisplay:"20/01/2025" }
+  
+  const seedExpenses = [
+    { id:1, title:"Chalk and Markers", category:"Supplies", amount:5000, date:"2025-01-10", dateDisplay:"10/01/2025" },
+    { id:2, title:"Generator Fuel", category:"Utilities", amount:15000, date:"2025-01-15", dateDisplay:"15/01/2025" },
+    { id:3, title:"Cleaning Materials", category:"Maintenance", amount:8000, date:"2025-01-20", dateDisplay:"20/01/2025" }
   ];
-  window.feePerStudent = 30000;
-  window.totalExpenses = 0;
-  saveToStorage();
-}
 
-function restoreFromStorage() {
-  try {
-    const savedStudents      = localStorage.getItem(STORAGE_KEYS.students);
-    const savedFees          = localStorage.getItem(STORAGE_KEYS.fees);
-    const savedExpenses      = localStorage.getItem(STORAGE_KEYS.expenses);
-    const savedFeePerStudent = localStorage.getItem(STORAGE_KEYS.feePerStudent);
-    const savedTotalExpenses = localStorage.getItem(STORAGE_KEYS.totalExpenses);
-    const savedVersion       = localStorage.getItem(STORAGE_KEYS.schemaVersion);
-
-    if (savedVersion && savedVersion !== SCHEMA_VERSION) {
-      console.warn('[EduCore] Storage schema mismatch. Clearing old data.');
-      clearStorage();
-      seedDefaultData();
-      return;
+  function loadData() {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (raw) {
+      try {
+        return JSON.parse(raw);
+      } catch (err) {
+        console.warn('[EduCore] Corrupted JSON in localStorage, falling back to seed data:', err.message);
+      }
     }
-
-    students                  = safeParse(savedStudents,      null);
-    feeRecords                = safeParse(savedFees,          null);
-    expenses                  = safeParse(savedExpenses,      null);
-    window.feePerStudent      = safeParse(savedFeePerStudent, 30000);
-    window.totalExpenses      = safeParse(savedTotalExpenses, 0);
-
-    if (students === null)  { seedDefaultData(); return; }
-
-    if (feeRecords === null) feeRecords = [];
-    if (expenses === null)   expenses = [];
-
-  } catch (err) {
-    console.warn('[EduCore] Could not restore from localStorage:', err.message);
-    seedDefaultData();
+    // First-time initialization: fallback to seed data
+    const initialData = {
+      students: seedStudents,
+      feeRecords: seedFees,
+      expenses: seedExpenses,
+      settings: { feePerStudent: 30000, totalExpenses: 0 }
+    };
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(initialData));
+    return initialData;
   }
-}
 
-function saveToStorage() {
-  try {
-    localStorage.setItem(STORAGE_KEYS.students,      JSON.stringify(students));
-    localStorage.setItem(STORAGE_KEYS.fees,          JSON.stringify(feeRecords));
-    localStorage.setItem(STORAGE_KEYS.expenses,      JSON.stringify(expenses));
-    localStorage.setItem(STORAGE_KEYS.feePerStudent, JSON.stringify(window.feePerStudent));
-    localStorage.setItem(STORAGE_KEYS.totalExpenses, JSON.stringify(window.totalExpenses));
-    localStorage.setItem(STORAGE_KEYS.schemaVersion, SCHEMA_VERSION);
-  } catch (err) {
-    console.warn('[EduCore] Could not save to localStorage:', err.message);
+  const storeData = loadData();
+  
+  let students = storeData.students;
+  let feeRecords = storeData.feeRecords;
+  let expenses = storeData.expenses;
+  window.feePerStudent = storeData.settings.feePerStudent;
+  window.totalExpenses = storeData.settings.totalExpenses;
+  
+  window.__store = { 
+    students, 
+    feeRecords, 
+    expenses,
+    settings: storeData.settings
+  };
+
+  function saveData() {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({
+      students: window.__store.students,
+      feeRecords: window.__store.feeRecords,
+      expenses: window.__store.expenses,
+      settings: window.__store.settings
+    }));
   }
-}
+  
+  window.saveData = saveData;
+  window.saveToStorage = saveData; // Alias for existing event handlers
 </script>
 
 <script>
@@ -2138,7 +2103,7 @@ Kindly arrange payment at your earliest convenience. Thank you for your continue
   window.navigateToTab = navigateToTab;
 
   // INITIALISATION — runs once when the page loads
-  restoreFromStorage();   // 1. Restore all data from localStorage (or seed defaults)
+  // Data is loaded synchronously on startup, so restoreFromStorage is no longer needed.
 
   // Reset counters to avoid duplicate IDs after restore
   if (students.length > 0) nextId = Math.max(...students.map(s => s.id)) + 1;
